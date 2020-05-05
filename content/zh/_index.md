@@ -68,9 +68,9 @@ sections:
         color: white
         button: 
           name: 更多
-          link: https://waylau.com/sidecar-pattern/ 
+          link: docs/overview/sidecar/ 
           size: large
-          target: _blank
+          # target: _blank
           color: 'white'
           bgcolor: '#283593'
       - subtitle: L3/L4/L7 架构 
@@ -80,9 +80,9 @@ sections:
         color: white
         button: 
           name: 更多
-          link: https://google.com
+          link: docs/overview/overview/ 
           size: large
-          target: _blank
+          # target: _blank
           color: 'white'
           bgcolor: '#283593'
       - subtitle: 动态更新 
@@ -92,9 +92,9 @@ sections:
         color: white
         button: 
           name: 更多
-          link: https://yahoo.com
+          link: docs/overview/overview/ 
           size: large
-          target: _blank
+          # target: _blank
           color: 'white'
           bgcolor: '#283593'
   - bgcolor: DarkSlateBlue
