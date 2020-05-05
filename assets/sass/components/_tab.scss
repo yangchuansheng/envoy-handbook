@@ -1,0 +1,55 @@
+.tab {
+  position: relative;
+  padding: 0.5rem 0;
+  margin: 2rem 0;
+
+  &__links {
+    height: auto;
+    border-top-left-radius: 0.25rem;
+
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(flex-start);
+    @include flex-wrap(wrap);
+  }
+
+  &__link {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13.8px;
+    font-family: $title-font;
+    text-transform: capitalize;
+    padding: 0.5rem 0.75rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    
+    @include themify($themes) {
+      color: themed('navbar-title-color');
+      background-color: themed('body-background-color');
+
+      &.active {
+        background-color: themed('body-background-color');
+        border: 1px solid themed('hr-color');
+        border-bottom: none;
+      }
+
+      @include on-event {
+        color: themed('navbar-title-hover-color');
+        background-color: themed('content-pre-header-background-color');
+      }
+    }
+  }
+
+  &__content {
+    display: none;
+    padding: 0 0.5rem;
+    border-radius: 0.25rem;
+    border-top-left-radius: 0;
+
+    @include themify($themes) {
+      border: 1px solid themed('hr-color');
+      background-color: themed('body-background-color');
+    }
+  }
+}

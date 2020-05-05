@@ -1,0 +1,609 @@
+.single {
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+  overflow-wrap: break-word;
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    font-family: $title-font;
+    line-height: 3rem;
+    overflow-wrap: break-word;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    
+    @include themify($themes) {
+      color: themed("single-header-title-color");
+    }
+
+    &[data-ani="true"] {
+      @include animation('slide-in-down .2s .3s 1 ease-in both');
+    }
+  }
+
+  &__shorttitle {
+    font-size: 1.5rem;
+    font-family: $title-font;
+    overflow-wrap: break-word;
+    margin-bottom: 0.25rem;
+    opacity: 0.7;
+
+    @include themify($themes) {
+      color: themed("single-header-title-color");
+    }
+  }
+
+  &__meta {
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+
+    @include flexbox();
+    @include align-items(center);
+    @include flex-wrap(wrap);
+    @include flex-grow(1);
+    @include themify($themes) {
+      color: themed('meta-color');
+    }
+    @media only screen and (max-width: 769px) {
+      @include flexbox();
+      @include flex-direction(column);
+      @include align-items(flex-start);
+    }
+  }
+
+  &__infos {
+    margin-right: 0.5rem;
+
+    @include flexbox();
+    @include flex-wrap(wrap);
+  }
+
+  &__info {
+    word-break: keep-all;
+    padding: 0 0.125rem;
+  }
+
+  &__nojs {
+    width: 100%;
+    color: red;
+    padding: 0.5rem 0;
+  }
+
+  &__contents {
+    &[data-ani="true"] {
+      @include animation('slide-in-left-little .2s .6s 1 ease-in both');
+    }
+    
+    &--gallery {
+      overflow: hidden;
+    }
+
+    & > p > a {
+      text-decoration: underline;
+    }
+
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    width: inheirt;
+    max-width: inherit;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      position: relative;      
+      line-height: 1.25;
+      font-family: $title-font;
+    }
+
+    h1,
+    h2 {
+      padding: 0;
+      color: inherit;
+      font-weight: 900;
+      text-rendering: optimizeLegibility; 
+
+      @include themify($themes) {
+        color: themed("single-contents-title-color");
+      }
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+      @include themify($themes) {
+        color: themed("single-contents-subtitle-color");
+      }
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      margin: 3.5rem 0 1.75rem 0;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin: 3.2rem 0 1.5rem 0;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin: 2.8rem 0 1.25rem 0;
+    }
+
+    h4 {
+      font-size: 1.5rem;
+      margin: 2.4rem 0 1rem 0;
+    }
+
+    h5 {
+      font-size: 1.2rem;
+      margin: 2rem 0 0.8rem 0;
+    }
+
+    h6 {
+      font-size: 1rem;
+      margin: 1.5rem 0 0.5rem 0;
+    }
+
+    pre {
+      padding: 34px 12px 8px;
+      overflow: auto;
+      border-radius: 0.34rem;
+      line-height: 1.5;
+      font-size: 13.8px;
+      direction: ltr;
+      
+      @include themify($themes) {
+        @include webkit-scrollbars(themed('custom-scrollbar-foreground-color'), themed('custom-scrollbar-background-color'));
+        @include moz-scrollbars(themed('custom-scrollbar-foreground-color'), themed('custom-scrollbar-background-color'));
+      }
+    }
+
+    pre:not(.chroma) {
+      position: relative;
+    }
+
+    div.chroma {
+      position: relative;
+
+      @include on-event {
+        .copy-to-clipboard {
+          opacity: 1;
+        }
+      }
+    }
+
+    pre > code:not([class^=language]) {
+      &::before {
+        background: #fc625d;
+        border-radius: 50%;
+        box-shadow: 20px 0 #fdbc40,40px 0 #35cd4b;
+        content: ' ';
+        height: 12px;
+        left: 15px;
+        margin-top: -24px;
+        position: absolute;
+        width: 12px;
+        z-index: 1;
+      }
+    }
+    
+    p > code:not([class^=language]) {
+      padding: 0.25rem 0.5rem;
+      @include themify($codeblock) {
+        color: themed('content-code-color');
+      }
+    }
+
+    code + .copy-to-clipboard {
+      position: absolute;
+      right: 4px;
+      top: 5px;
+      border-radius: 2px;
+      z-index: z('clipboard');
+      @include transition(all, 0.2s, ease);
+    }
+
+    .copy-to-clipboard {
+      background-position: 50% 50%;
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+      width: 27px;
+      height: 1.45rem;
+      top: -1px;
+      vertical-align: middle;
+      position: relative;      
+      margin-left: -0.2rem;
+      cursor: pointer;
+      border-radius: 0 2px 2px 0;
+      margin-bottom: 1px;
+      opacity: 0;
+
+      @include clippy();
+      @include transition(all, 0.2s, ease);
+    }
+    .copy-to-clipboard:hover {
+      @include translateY(-0.1rem);
+    }
+    .chroma .copy-to-clipboard {
+      position: absolute;
+      right: 4px;
+      top: 5px;      
+      border-radius: 2px;
+      z-index: z('clipboard');
+      @include transition(all, 0.2s, ease);
+    }
+    .chroma .copy-to-clipboard:hover {
+      @include translateY(-0.1rem);
+    }
+    .language-code .copy-to-clipboard {
+      position: absolute;
+      right: 4px;
+      top: 5px;      
+      border-radius: 2px;
+      z-index: z('clipboard');
+      @include transition(all, 0.2s, ease);
+    }
+    .language-code .copy-to-clipboard:hover {
+      @include translateY(-0.1rem);
+    }
+    .highlight > .copy-to-clipboard {
+      position: absolute;
+      right: 4px;
+      top: 5px;      
+      border-radius: 2px;
+      z-index: z('clipboard');
+      @include transition(all, 0.2s, ease);
+    }
+    .highlight > .copy-to-clipboard:hover {
+      @include translateY(-0.1rem);
+    }
+
+    blockquote {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: inherit;
+      opacity: 0.8;
+      position: relative;
+
+      code:not([class^=language]) {
+        padding: 3px 7px;
+        margin: -5px;
+        @include themify($codeblock) {
+          color: themed('content-code-color');
+        }
+      }
+    }
+
+    img {
+      display: block;
+      border-radius: 0.25rem;
+      margin: 0 auto;
+    }
+
+    p {
+      margin: 0 0 1.75rem 0;
+      padding: 0;      
+
+      code:not([class^=language]) {
+        padding: 3px 7px;
+        @include themify($codeblock) {
+          color: themed('content-code-color');
+        }
+      }
+    }
+
+    ul {
+      margin-right: 0;
+      margin-top: 0;
+      padding: 0;
+      list-style: disc outside none;
+    }
+
+    &[data-dir="rtl"] {
+      li {
+        margin-right: 2rem;
+      }
+
+      blockquote {
+        margin: 0 1.5rem 1.75rem 1.75rem;
+        padding: 0 1.42188rem 0 0;
+
+        @include themify($themes) {
+          border-right: 0.32813rem solid themed("single-blockquote-border-color");
+        }
+      }
+    }
+
+    &[data-dir="ltr"] {
+      li {
+        margin-left: 2rem;
+      }
+
+      blockquote {
+        margin: 0 1.75rem 1.75rem 1.5rem;
+        padding: 0 0 0 1.42188rem;
+
+        @include themify($themes) {
+          border-left: 0.32813rem solid themed("single-blockquote-border-color");
+        }
+      }
+    }
+
+    li {
+      margin-bottom: calc(1rem / 2);
+
+      & > code {
+        padding: 2px 7px;
+      }
+
+      code:not([class^=language]) {
+        @include themify($codeblock) {
+          color: themed('content-code-color');
+        }
+      }
+
+      p {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    hr {
+      margin: 0 0 calc(1.25rem - 1px) 0;
+      padding: 0;
+      border: none;
+      height: 1px;
+      @include themify($themes) {
+        background: themed("single-hr-background-color");
+      }
+    }
+
+    dl dt::after {
+        content: ':';
+    }
+
+    dd {
+      display: block;
+      margin-inline-start: 40px;
+    }
+
+    .anchor {
+      cursor: pointer;
+    }
+
+    a.footnote-ref {
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-left: 3px;
+
+      &::before {
+        content: "[";
+      }
+
+      &::after {
+        content: "]";
+      }
+    }
+
+    .table-wrapper {
+      overflow-x: auto;      
+
+      > table {
+        max-width: 100%;
+        margin: 10px 0;
+        border-spacing: 0;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.125);
+
+        
+        @include themify($codeblock) {
+          thead {
+            background: themed('content-pre-header-background-color');
+          }
+
+          th {
+            color: themed('content-pre-header-color');            
+          }
+
+          th, td {
+            padding: 0.25rem 0.5rem;
+            border: 1px double themed('content-pre-border-background-color');
+          }
+        }
+      }
+
+      code:not([class^=language]) {
+        padding: 3px 7px;
+        margin: 0 0.25rem;
+        @include themify($codeblock) {
+          color: themed('content-code-color');
+        }
+      }
+    }
+  }
+
+  &__tags {
+    list-style-type: none;
+    @include flexbox();
+    @include align-items(center);
+    @include flex-wrap(wrap);
+    @include flex-grow(1);
+  }
+
+  &__tag {
+    padding: 0 0.25rem;
+  }
+}
+
+code, pre {  
+  padding: .5rem 0;
+  line-height: 1.5;
+  font-size: 13.8px;
+  font-family: $code-font-stack;
+  overflow: auto;
+
+  a {
+    text-decoration: none !important;
+  }
+}
+
+*:not(.chroma) {
+  code, pre {
+    @include themify($codeblock) {
+      color: themed('content-pre-color');
+      background: themed('content-pre-background-color');
+    }
+  }
+
+  code {
+    padding: 0;
+  }
+}
+
+code:not([class^=language]) {  
+  padding: 3px 0;
+  border-radius: 4px;
+  @include themify($codeblock) {
+    color: themed('content-code-color');
+  }
+}
+
+pre:not(.chroma) {
+  overflow: auto;
+}
+
+.single__contents > .language-code, li > .language-code {
+  overflow-x: auto;
+  position: relative;
+  margin: 1rem 0;
+  direction: ltr;
+
+  @include on-event {
+    .copy-to-clipboard {
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 2px 7px;
+    width: 100%;
+    height: 30px;
+    z-index: z('toc');
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    content: '';
+
+    @include themify($codeblock) {
+        color: themed('content-pre-header-color');
+        background: themed('content-pre-header-background-color');
+    }
+  }
+}
+
+.highlight {
+  position: relative;
+
+  @include on-event {
+    .copy-to-clipboard {
+      opacity: 1;
+    }
+  }
+}
+
+.highlight > .chroma {
+  margin: 1em 0;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
+  z-index: z('content');
+  overflow-x: auto;
+  direction: ltr;
+  position: relative;
+
+  @include themify($codeblock) {
+    color: themed('content-pre-color');
+    background: themed('content-pre-background-color');
+  }
+
+  code {
+    padding: 0;
+  }
+  
+  code[data-lang] {
+    &::before {
+    }
+  }
+
+  table, tr, td {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .lntd {
+    &:first-child {
+      width: 10px;
+      @include no-select;
+
+      pre {
+        margin: 0;
+        padding: 34px 4px 6px;
+      }
+    }
+
+    &:last-child {
+      vertical-align: top;
+
+      pre {
+        margin: 0;
+        padding: 34px 4px 6px;
+      }
+    }
+  }
+
+  /* LineNumbersTable */  
+  .lnt {
+    @include themify($codeblock) {
+      color: themed('content-pre-number-color');
+    }
+  }
+
+  table.lntable {
+    overflow-x: auto;
+    @include themify($themes) {
+      @include webkit-scrollbars(themed('custom-scrollbar-foreground-color'), themed('custom-scrollbar-background-color'));
+      @include moz-scrollbars(themed('custom-scrollbar-foreground-color'), themed('custom-scrollbar-background-color'));
+    }
+  }
+}
+
+li .highlight > .chroma {
+  .lnt:first-child {
+    padding: 0 0.3rem;
+  }
+  .lnt:not(:first-child) {
+    padding: 0 0.3rem;
+  }
+}
+
+td:not(.lntd) {
+  code {
+    padding: 2px 7px !important;
+  }
+}
+
+table:not(.lntable) {
+  td {
+    code {
+      padding: 2px 7px !important;
+    }
+  }
+}

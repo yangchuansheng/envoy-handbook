@@ -1,0 +1,11 @@
+[[main]]
+  identifier = "docs"
+  name = "文档"
+  url = "docs"
+  weight = 1
+
+[[main]]
+  identifier = "blog"
+  name = "博客"
+  url = "https://fuckcloudnative.io"
+  weight = 3

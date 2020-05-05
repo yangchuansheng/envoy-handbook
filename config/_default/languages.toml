@@ -1,0 +1,11 @@
+[en]
+  title = "ZDoc"
+  languageName = "English"
+  weight = 1
+  contentdir = "content/en"
+
+[zh]
+  title = "Envoy 中文指南"
+  languageName = "中文"
+  weight = 2
+  contentdir = "content/zh"
