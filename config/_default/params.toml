@@ -2,7 +2,7 @@ logo = true
 logoText = "Envoy 中文指南"
 logoType = "short" # long, short
 description = "Envoy 从入门到实践进阶手册"
-editBaseURL = "https://github.com/zzossig/zzoDocs/blob/master/content"
+editBaseURL = "https://github.com/yangchuansheng/envoy-handbook/blob/master/content"
 themeOptions = ["light", "dark"]
 
 custom_css = ["fontawesome/css/all.css"]
