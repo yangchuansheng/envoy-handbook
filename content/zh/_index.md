@@ -64,7 +64,7 @@ sections:
       - subtitle: SidaCar 模式 
         subtitlePosition: center
         description: "Envoy 是一个独立进程，设计为伴随每个应用程序服务运行。所有的 Envoy 形成一个透明的通信网格，每个应用程序发送消息到本地主机或从本地主机接收消息，不需要知道网络拓扑。"
-        image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200430142752.png 
+        image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200508201806.png 
         color: white
         button: 
           name: 更多
@@ -76,7 +76,7 @@ sections:
       - subtitle: L3/L4/L7 架构 
         subtitlePosition: center
         description: "传统的网络代理，要么在 HTTP 层工作，要么在 TCP 层工作。Envoy 支持同时在 3/4 层和 7 层操作，以此应对这两种方法各自都有其实际限制的现实。"
-        image: images/section/processor.png
+        image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200508202645.png 
         color: white
         button: 
           name: 更多
@@ -88,7 +88,7 @@ sections:
       - subtitle: 动态更新 
         subtitlePosition: center
         description: "与 Nginx 等代理的热加载不同，Envoy 可以通过 API 来实现其控制平面，控制平面可以集中服务发现，并通过 API 接口动态下发规则更新数据平面的配置，不需要重启数据平面的代理。"
-        image: images/section/root-server.png
+        image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200508202858.png 
         color: white
         button: 
           name: 更多
