@@ -1,0 +1,57 @@
+.comment-list .comment-item-content p:last-child {
+  margin-bottom: 0;
+  @include themify($themes) {
+      color: themed('body-color');
+  }
+}
+
+.comment-list .comment-item-header .comment-item-name[href^="javascript"] {
+  cursor: text;
+  @include themify($themes) {
+    color: themed('title-color');
+  }
+}
+
+.comment-list .comment-item-footer .comment-item-reply,.comment-list .comment-item-footer .comment-item-edit,.comment-list .comment-item-footer .comment-item-delete {
+  font-weight:500;
+  @include themify($themes) {
+    color: themed('body-color');
+  }
+}
+
+.comment-list .comment-item-footer .comment-item-reply:hover,.comment-list .comment-item-footer .comment-item-edit:hover,.comment-list .comment-item-footer .comment-item-delete:hover {
+  @include themify($themes) {
+    color: themed('title-color');
+  }
+}
+
+.comment-related .related-list .related-item-link {
+  @include themify($themes) {
+    color: themed('body-color');
+  }
+}
+
+.comment-related .comment-related-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  @include themify($themes) {
+    color: themed('toc-label-color');
+  }
+}
+
+.comment-related .related-list .related-item-desc {
+  font-weight: 500;
+  font-size: 12px;
+  @include themify($themes) {
+    color: themed('toc-label-color');
+  }
+}
+
+.comment-related .comment-related-forumname {
+  @include themify($themes) {
+    color: themed('body-color');
+  }
+}

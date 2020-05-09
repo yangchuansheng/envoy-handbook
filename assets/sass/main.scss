@@ -56,6 +56,7 @@ $light-nav-icon-color: {{ .Site.Data.color.light_nav_icon_color }};
 @import 'layout/header';
 @import 'layout/main';
 @import 'layout/navbar';
+@import 'layout/idisqus';
 
 @import 'pages/home';
 @import 'pages/single';
