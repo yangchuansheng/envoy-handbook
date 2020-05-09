@@ -805,20 +805,9 @@
 	color:#0095dd;
 	font-weight:700
 }
-.comment-list .comment-item-header .comment-item-name[href^="javascript"] {
-	cursor:text;
-	color:#000
-}
 .comment-list .comment-item-footer {
 	font-size:12px;
 	padding:5px 0
-}
-.comment-list .comment-item-footer .comment-item-reply,.comment-list .comment-item-footer .comment-item-edit,.comment-list .comment-item-footer .comment-item-delete {
-	color:#656c7a;
-	font-weight:500
-}
-.comment-list .comment-item-footer .comment-item-reply:hover,.comment-list .comment-item-footer .comment-item-edit:hover,.comment-list .comment-item-footer .comment-item-delete:hover {
-	color:#2a2e2e
 }
 .comment-list .comment-item-footer .comment-item-cancel {
 	color:#0095dd;
@@ -855,9 +844,6 @@
 }
 .comment-list .comment-item-content p {
 	margin-bottom:5px
-}
-.comment-list .comment-item-content p:last-child {
-	margin-bottom:0
 }
 .comment-list .comment-item-content a[data-dsq-mention]:before {
 	content:"@"
@@ -1040,17 +1026,6 @@
 	margin-top:20px;
 	width:100%
 }
-.comment-related .comment-related-title {
-	font-weight:700;
-	text-transform:uppercase;
-	color:rgba(34,59,74,0.5);
-	margin-bottom:5px;
-	white-space:nowrap;
-	text-overflow:ellipsis
-}
-.comment-related .comment-related-forumname {
-	color:#413a3a
-}
 .comment-related .related-list {
 	display:flex;
 	flex-wrap:wrap;
@@ -1063,9 +1038,6 @@
 .comment-related .related-list .related-item:nth-child(odd) {
 	margin-right:4%
 }
-.comment-related .related-list .related-item-link {
-	color:#000
-}
 .comment-related .related-list .related-item-link:hover .related-item-avatar {
 	opacity:.8
 }
@@ -1076,11 +1048,6 @@
 	display:block;
 	overflow:hidden;
 	font-weight:700
-}
-.comment-related .related-list .related-item-desc {
-	color:rgba(30,55,70,0.4);
-	font-weight:500;
-	font-size:12px
 }
 .comment-related .related-list .related-item-post {
 	padding:5px 0;
