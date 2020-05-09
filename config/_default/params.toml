@@ -5,7 +5,7 @@ description = "Envoy 从入门到实践进阶手册"
 editBaseURL = "https://github.com/yangchuansheng/envoy-handbook/blob/master/content/zh"
 themeOptions = ["light", "dark"]
 
-custom_css = ["fontawesome/css/all.css", "css/fonts-code.css"]
+custom_css = ["css/my.css", "fontawesome/css/all.css", "css/fonts-code.css"]
 
 useFaviconGenerator = true # https://www.favicon-generator.org/
 
