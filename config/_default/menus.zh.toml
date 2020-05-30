@@ -1,7 +1,7 @@
 [[main]]
   identifier = "docs"
   name = "文档"
-  url = "docs"
+  url = "docs/"
   weight = 1
 
 [[main]]
