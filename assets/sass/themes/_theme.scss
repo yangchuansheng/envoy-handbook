@@ -1,0 +1,19 @@
+@import 'dark';
+@import 'light';
+@import 'solarized';
+
+@import 'darkcode';
+@import 'lightcode';
+@import 'solarizedcode';
+
+$themes: (
+  dark: $dark,
+  light: $light,
+  solarized: $solarized,
+);
+
+$codeblock: (
+  dark: $darkcode,
+  light: $lightcode,
+  solarized: $solarizedcode,
+);
