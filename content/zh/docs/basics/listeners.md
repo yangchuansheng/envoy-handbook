@@ -6,7 +6,7 @@ title: "监听器"
 description: "本章节描述了 Envoy 监听器的概念及其配置结构。"
 date: 2020-05-08T12:19:59+08:00
 draft: false
-weight: 1
+weight: 2
 ---
 
 ## 监听器（Listener）
