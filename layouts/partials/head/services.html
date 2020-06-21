@@ -1,3 +1,13 @@
-{{ template "_internal/google_analytics.html" . }}
-{{ template "_internal/google_analytics_async.html" . }}
+{{ if not .Site.IsServer }}
+  <!--
+  {{ template "_internal/google_analytics.html" . }}
+  {{ template "_internal/google_analytics_async.html" . }}
+  -->
+  <script>
+  // replace following variables to your own
+  window.ga_tid = "UA-145022311-1";
+  window.ga_url = "https://ga.fuckcloudnative.io";
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/giuem/ga-proxy/packages/ga/dist/ga.min.js" async></script>
+{{ end }}
 {{ partial "service/baidu-analytics" . }}
