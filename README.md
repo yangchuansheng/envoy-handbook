@@ -56,7 +56,7 @@ Envoy 是一个独立进程，设计为伴随每个应用程序服务运行。�
 👤 **米开朗基杨**
 
 * Github: [@yangchuansheng](https://github.com/yangchuansheng)
-* Wechat: yangchuansheng572887
+* Wechat: cloud-native-yang
 
 ## 支持我
 
