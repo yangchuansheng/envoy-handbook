@@ -80,7 +80,7 @@
     }
 
     & > p > a {
-      text-decoration: underline;
+      text-decoration: none;
     }
 
     margin: 1rem 0;
@@ -197,6 +197,7 @@
       padding: 0.25rem 0.5rem;
       @include themify($codeblock) {
         color: themed('content-code-color');
+        background-color: themed('content-background-code-color');
       }
     }
 
