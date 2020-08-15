@@ -346,6 +346,7 @@
       code:not([class^=language]) {
         @include themify($codeblock) {
           color: themed('content-code-color');
+          background-color: themed('content-background-code-color');
         }
       }
 

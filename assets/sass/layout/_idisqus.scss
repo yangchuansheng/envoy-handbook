@@ -1251,3 +1251,57 @@
     color: themed('body-color');
   }
 }
+
+.comment-list .comment-item-header .comment-item-pname {
+  @include themify($themes) {
+    color: themed('comment-iterm-header-color');
+  }
+    position: relative;
+}
+
+.comment-header .comment-header-item {
+    height: 36px;
+    line-height: 36px;
+    font-weight: bold;
+    font-size: 15px;
+    @include themify($themes) {
+      color: themed('comment-iterm-header-color');
+    }
+    display: inline-block;
+    @include themify($themes) {
+      border-bottom: 2px solid themed('comment-iterm-header-color');
+    }
+    margin-bottom: -2px;
+    margin-right: 10px;
+    padding: 0 5px;
+}
+
+.comment-header .comment-header-item:last-child:hover {
+  @include themify($themes) {
+    color: themed('comment-iterm-header-hover-color');
+  }
+}
+
+.comment-navbar .comment-recommend {
+    display: flex;
+    align-items: center;
+    line-height: 27px;
+    height: 27px;
+    @include themify($themes) {
+      border: 1px solid themed('comment-recommend-color');
+    }
+    padding: 0 5px;
+    border-radius: 3px;
+    @include themify($themes) {
+      color: themed('comment-recommend-color');
+    }
+    font-size: 12px;
+}
+
+.comment-navbar .comment-recommend .icon {
+    @include themify($themes) {
+      fill: themed('comment-recommend-icon-color');
+    }
+    width: 16px;
+    height: 16px;
+}
