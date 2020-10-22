@@ -19,7 +19,6 @@
     font-size: 1rem;
     margin: 0.65rem 0;
     padding-bottom: 0.5rem;
-    text-transform: capitalize;
 
     @include themify($themes) {
       color: themed('toc-label-color');

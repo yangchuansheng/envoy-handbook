@@ -24,6 +24,7 @@
   </div>
 </div>
 
+{{ partial "script/codeblock-script.html" . }}
 {{ partial "script/single-script.html" . }}
 <script>
   var listSide = document.getElementById('list-side');
@@ -36,12 +37,10 @@
   enquire.register("screen and (max-width:1280px)", {
     match: function () {
       if (wideViewAsDefault) {
-        console.log(1);
         singleMenu.className = 'l';  
         listMain.className = 'mr';
         listSide.className = 'hide';
       } else {
-        console.log(2);
         singleMenu.className = 'l';
         listMain.className = 'm';
         listSide.className = 'r';
@@ -49,12 +48,10 @@
     },
     unmatch: function () {
       if (wideViewAsDefault) {
-        console.log(3);
         singleMenu.className = 'l';
         listMain.className = 'mr';
         listSide.className = 'hide';
       } else {
-        console.log(4);
         listSide.className = 'r';
         listMain.className = 'm';
         singleMenu.className = 'l';
@@ -62,7 +59,6 @@
     },
   }).register("screen and (max-width:960px)", {
     match: function () {
-      console.log(5);
       singleMenu.className = 'l';
       listMain.className = 'mr';
       listSide.className = 'hide';
@@ -70,12 +66,10 @@
     },
     unmatch: function () {
       if (wideViewAsDefault) {
-        console.log(6);
         singleMenu.className = 'l';
         listMain.className = 'mr';
         listSide.className = 'hide';
       } else {
-        console.log(7);
         singleMenu.className = 'l';
         listMain.className = 'm';
         listSide.className = 'r';
@@ -84,7 +78,6 @@
     },
   }).register("screen and (max-width:600px)", {
     match: function () {
-      console.log(8);
       listSide.className = 'hide';
       listMain.className = 'lmr';
       singleMenu.className = 'hide';

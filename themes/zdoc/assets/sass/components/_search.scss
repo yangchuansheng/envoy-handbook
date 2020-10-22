@@ -56,7 +56,7 @@
     font-size: 0.9rem;
     border: none;
     outline: none;
-    padding-right: 1rem;
+    padding-right: 0rem;
 
     @include themify($themes) {
       color: themed('body-color');

@@ -1,0 +1,25 @@
+{{ if $.Param "enableWideBlogSwitch" }}
+  <label class="switch switch__abs" data-dir="{{ $.Param "languagedir" | default "ltr" }}">
+    {{ if ($.Param "wideViewAsDefault") }}
+      <input id="toggle-menu" aria-label="Toggle Menu Visibility" type="checkbox" />
+      <span class="slider">
+        <span class="slider__icon {{ if (ne ($.Param "languagedir") "rtl") }}{{ else }}hide{{ end }}">
+          {{ partial "svgs/arrow-forward.svg" (dict "width" 20 "height" 20) }}
+        </span>
+        <span class="slider__icon {{ if (ne ($.Param "languagedir") "rtl") }}hide{{ end }}">
+          {{ partial "svgs/arrow-back.svg" (dict "width" 20 "height" 20) }}
+        </span>
+      </span>
+    {{ else }}
+      <input id="toggle-menu" aria-label="Toggle Menu Visibility" type="checkbox" checked />
+      <span class="slider">
+        <span class="slider__icon {{ if (ne ($.Param "languagedir") "rtl") }}{{ else }}hide{{ end }}">
+          {{ partial "svgs/arrow-back.svg" (dict "width" 20 "height" 20) }}
+        </span>
+        <span class="slider__icon {{ if (ne ($.Param "languagedir") "rtl") }}hide{{ end }}">
+          {{ partial "svgs/arrow-forward.svg" (dict "width" 20 "height" 20) }}
+        </span>
+      </span>
+    {{ end }}
+  </label>
+{{ end }}

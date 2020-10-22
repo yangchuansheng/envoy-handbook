@@ -23,11 +23,12 @@
   </div>
 </div>
 
+{{ partial "script/codeblock-script.html" . }}
 {{ partial "script/single-script.html" . }}
 <script>
-  var listSide = document.getElementById('list-side');
-  var listMain = document.getElementById('list-main');
   var singleMenu = document.getElementById('single-menu');
+  var listMain = document.getElementById('list-main');
+  var listSide = document.getElementById('list-side');
   var wideViewAsDefault = JSON.parse({{ $wideViewAsDefault | jsonify }});
 
   enquire.register("screen and (max-width:1280px)", {

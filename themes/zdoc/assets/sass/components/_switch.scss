@@ -22,12 +22,20 @@
 
   &__abs {
     position: absolute;
-    left: -75px;
-    top: -16px;
     z-index: z('menu');
     width: 50px;
     height: 50px;
     margin: auto 0;
+
+    &[data-dir="rtl"] {
+      right: -75px;
+      top: -16px;
+    }
+
+    &[data-dir="ltr"] {
+      left: -75px;
+      top: -16px;
+    }
 
     @include themify($themes) {
       color: themed('landing-button-default');

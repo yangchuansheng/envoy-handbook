@@ -28,7 +28,7 @@
   {{ $active = or $active (in $currentURL $sectionName1) }}
   
   {{ if $ctx.Params.Collapsible }}
-  <span class="menu__title--collapse {{ if $active }}active{{ end }}" data-depth="{{ $depth }}">
+  <span class="menu__title--collapse {{ if $active }}active{{ end }}" data-depth="{{ $depth }}" data-permalink="{{ $ctx.Permalink }}">
     {{ $ctx.Title }}
     <span class="menu__title--icon {{ if $active }}{{ if eq ($root.Param "languagedir") "rtl" }}downrtl{{ else }}down{{ end }}{{ else }}right{{ end }}">
       {{ if eq ($root.Param "languagedir") "rtl" }}

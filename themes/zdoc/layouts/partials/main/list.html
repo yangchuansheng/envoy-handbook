@@ -1,3 +1,4 @@
+{{ $wideViewAsDefault := $.context.Param "wideViewAsDefault" }}
 <div class="mid">
   <div class="divider">
 
@@ -7,7 +8,7 @@
       {{ end }}
     </nav>
 
-    <article id="list-main" class="m" data-dir="{{ $.context.Param "languagedir" | default "ltr" }}">
+    <article id="list-main" class="{{ if $wideViewAsDefault }}mr{{ else }}m{{ end }}" data-dir="{{ $.context.Param "languagedir" | default "ltr" }}">
       {{ partial "main/sections/list-main.html" .context }}
       {{ if .section_to_display }}
         {{ partial "main/sections/list-section.html" (dict "section_to_display" .section_to_display) }}
@@ -15,53 +16,73 @@
       {{ partial "main/component/pagination-single.html" .context }}
     </article>
 
-    <section id="list-side" class="r" data-dir="{{ $.context.Param "languagedir" | default "ltr" }}">
+    <section id="list-side" class="{{ if $wideViewAsDefault }}hide{{ else }}r{{ end }}" data-dir="{{ $.context.Param "languagedir" | default "ltr" }}">
     </section>
 
   </div>
 </div>
 
 <script>
-  var listSide = document.getElementById('list-side');
-  var listMain = document.getElementById('list-main');
   var listMenu = document.getElementById('list-menu');
+  var listMain = document.getElementById('list-main');
+  var listSide = document.getElementById('list-side');
   var switchElem = document.querySelector('.switch');
+  var wideViewAsDefault = JSON.parse({{ $wideViewAsDefault | jsonify }});
 
   enquire.register("screen and (max-width:1280px)", {
     match: function () {
-      listSide.className = 'r';
-      listMain.className = 'm';
-      listMenu.className = 'l';
+      if (wideViewAsDefault) {
+        listMenu.className = 'l';
+        listMain.className = 'mr';
+        listSide.className = 'hide';
+      } else {
+        listMenu.className = 'l';
+        listMain.className = 'm';
+        listSide.className = 'r';
+      }
     },
     unmatch: function () {
-      listSide.className = 'r';
-      listMain.className = 'm';
-      listMenu.className = 'l';
+      if (wideViewAsDefault) {
+        listMenu.className = 'l';
+        listMain.className = 'mr';
+        listSide.className = 'hide';
+      } else {
+        listMenu.className = 'l';
+        listSide.className = 'r';
+        listMain.className = 'm';
+      }
     },
   }).register("screen and (max-width:960px)", {
     match: function () {
-      listSide.className = 'hide';
-      listMain.className = 'mr';
       listMenu.className = 'l';
+      listMain.className = 'mr';
+      listSide.className = 'hide';
       switchElem.className = 'hide';
     },
     unmatch: function () {
-      listSide.className = 'r';
-      listMain.className = 'm';
-      listMenu.className = 'l';
+      if (wideViewAsDefault) {
+        listMenu.className = 'l';
+        listMain.className = 'mr';
+        listSide.className = 'hide';
+      } else {
+        listMenu.className = 'l';
+        listMain.className = 'm';
+        listSide.className = 'r';
+      }
+      
       switchElem.className = 'switch';
     },
   }).register("screen and (max-width:600px)", {
     match: function () {
-      listSide.className = 'hide';
-      listMain.className = 'lmr';
       listMenu.className = 'hide';
+      listMain.className = 'lmr';
+      listSide.className = 'hide';
       switchElem.className = 'hide';
     },
     unmatch: function () {
-      listSide.className = 'hide';
-      listMain.className = 'mr';
       listMenu.className = 'l';
+      listMain.className = 'mr';
+      listSide.className = 'hide';
       switchElem.className = 'hide';
     },
   });
