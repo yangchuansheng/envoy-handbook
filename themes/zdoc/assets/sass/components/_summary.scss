@@ -1,12 +1,11 @@
 .summary-card {
   padding: 1rem;
   padding-bottom: 0;
-  margin: 1.5rem 0;
+  margin: 2.5rem 0 2rem 0;
   position: relative;
 
   @include themify($themes) {
     background-color: themed('body-background-color');
-    border-bottom: 1px solid themed('hr-color');
   }
 
   .title {
@@ -43,6 +42,7 @@
     @include flex-wrap(wrap);
     @include themify($themes) {
       background-color: themed('body-background-color');
+      border-bottom: 1px solid themed('hr-color');
     }
   }
 

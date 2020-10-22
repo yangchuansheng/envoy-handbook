@@ -1,4 +1,7 @@
 <nav class="breadcrumb" aria-label="breadcrumbs" data-is-blog="{{ if eq .Type "blog" }}true{{ else }}false{{ end }}">
+  {{ if eq .Type "blog" }}
+    {{ partial "main/component/toggle-menu.html" . }}
+  {{ end }}
   <ol>
     {{ template "breadcrumbnav" (dict "p1" . "p2" .) }}
   </ol>

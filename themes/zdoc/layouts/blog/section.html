@@ -1,41 +1,30 @@
 {{ define "main" }}
 <div class="top">
   <header class="header__wrapper bgcolor__header">
-    <div class="divider">
-      <div class="lmr">
-        {{ partial "header/blog-header.html" . }}
+    {{ if eq .Params.blogHeaderType "img" }}
+      {{ partial "header/blog-header.html" . }}
+    {{ else }}
+      <div class="divider">
+        <div class="lmr">
+          {{ partial "header/blog-header.html" . }}
+        </div>
       </div>
-    </div>
+    {{ end }}
   </header>
-  
-  <div class="header__wrapper bgcolor__breadcrumb">
-    <div class="divider">
-      <div class="lmr flexbox jc-center flex-wrap tag__wrapper">
-        {{ range $index, $element := .Site.Taxonomies.tags }}
-          {{ if $index }}
-            <a href="{{ $element.Page.RelPermalink }}" class="tag">
-              <span class="tag__text">
-                {{ $element.Page.Title }}
-              </span>
-              <span class="tag__num" dir="auto">
-                {{ printf "%#v" (len $element) }}
-              </span>
-            </a>
-          {{ end }}
-        {{ end }}
-      </div>
-    </div>
-  </div>
 </div>
+
 <div class="mid blog__bg">
   <main class="main blog__bg">
-    <div class="sv" data-view="full">
-      <div class="blog">
+    <div class="sv">
+      <div class="blog-post">
         {{ $paginator := .Paginate (where .RegularPages "Type" .Type) }}
         {{ range $paginator.Pages }}
           {{ .Render "summary" }}
         {{ end }}
         {{ partial "main/component/pagination.html" . }}
+      </div>
+      <div class="blog-tags">
+        {{ partial "main/component/tag-cloud" . }}
       </div>
     </div>
   </main>
@@ -43,27 +32,33 @@
 
 <script>
   var singleViewElem = document.querySelectorAll('.sv');
+  var postElem = document.querySelector('.blog-post');
+  var tagsElem = document.querySelector('.blog-tags');
 
   enquire.register("screen and (max-width:1280px)", {
     match: function () {
       singleViewElem.forEach(function(elem) {
-        elem.setAttribute('data-view', 'full');
+        postElem.className = "blog-post";
+        tagsElem.className = "blog-tags";
       });
     },
     unmatch: function () {
       singleViewElem.forEach(function (elem) {
-        elem.setAttribute('data-view', 'full');
+        postElem.className = "blog-post";
+        tagsElem.className = "blog-tags";
       });
     },
   }).register("screen and (max-width:769px)", {
     match: function () {
       singleViewElem.forEach(function (elem) {
-        elem.setAttribute('data-view', 'mobile');
+        postElem.className = "blog-total";
+        tagsElem.className = "hide";
       });
     },
     unmatch: function () {
       singleViewElem.forEach(function (elem) {
-        elem.setAttribute('data-view', 'full');
+        postElem.className = "blog-post";
+        tagsElem.className = "blog-tags";
       });
     },
   });

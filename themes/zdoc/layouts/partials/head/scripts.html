@@ -8,10 +8,13 @@
 {{ end }}
 {{ end }}
 
+{{ if $.Param "enableSearch" }}
+  {{ $fuse := resources.Get "js/fuse.min.js" | resources.Fingerprint }}
+  <script defer src="{{ $fuse.RelPermalink }}"></script>
+{{ end }}
+
 {{ $enquire := resources.Get "js/enquire.min.js" | resources.Fingerprint }}
 <script src="{{ $enquire.RelPermalink }}"></script>
-{{ $fuse := resources.Get "js/fuse.min.js" | resources.Fingerprint }}
-<script defer src="{{ $fuse.RelPermalink }}"></script>
 {{ $lazysizes := resources.Get "js/lazysizes.min.js" | resources.Fingerprint }}
 <script defer src="{{ $lazysizes.RelPermalink }}"></script>
 {{ $getParents := resources.Get "js/helper/getParents.js" | resources.Minify | resources.Fingerprint }}
@@ -29,10 +32,12 @@
 
     // ==================== toc visibility ========================
     var toggleSidebarElem = document.getElementById("toggle-sidebar");
+    var toggleMenuElem = document.getElementById("toggle-menu");
     var tocBodyElem = document.querySelector('.toc__body');
     var tocLabelElem = document.querySelector('.toc__label');
     var listMainElem = document.getElementById('list-main');
     var listSideElem = document.getElementById('list-side');
+    var singleMenuElem = document.getElementById('single-menu');
     var sliderIcons = document.querySelectorAll('.slider__icon');
 
     toggleSidebarElem ?
@@ -78,7 +83,40 @@
           });
         }
       }) : null;
+
+    toggleMenuElem ?
+      toggleMenuElem.addEventListener('change', function (e) {
+        if (e.target.checked) {
+          if (listMainElem && singleMenuElem) {
+            listMainElem.className = 'm';
+            singleMenuElem.className = 'l';
+          }
+
+          sliderIcons && sliderIcons.forEach(function (elem) {
+            if (elem.classList.contains('hide')) {
+              elem.classList.remove('hide');
+            } else {
+              elem.classList.add('hide');
+            }
+          });
+
+        } else {
+          if (listMainElem && singleMenuElem) {
+            listMainElem.className = 'lm';
+            singleMenuElem.className = 'hide';
+          }
+
+          sliderIcons && sliderIcons.forEach(function (elem) {
+            if (elem.classList.contains('hide')) {
+              elem.classList.remove('hide');
+            } else {
+              elem.classList.add('hide');
+            }
+          });
+        }
+      }) : null;
     // ============================================================
+
 
     // ===================== navbar collapse ======================
     var navCollapseBtn = document.getElementById('navCollapseBtn');
@@ -118,6 +156,66 @@
       });
     }
     // ============================================================
+
+
+
+    // ============================ tab ============================
+    document.querySelectorAll('.tab') ? 
+    document.querySelectorAll('.tab').forEach(function(elem, idx) {
+      var containerId = elem.getAttribute('id');
+      var containerElem = elem;
+      var tabLinks = elem.querySelectorAll('.tab__link');
+      var tabContents = elem.querySelectorAll('.tab__content');
+      var ids = [];
+
+      tabLinks && tabLinks.length > 0 ?
+      tabLinks.forEach(function(link, index, self) {
+        link.onclick = function(e) {
+          for (var i = 0; i < self.length; i++) {
+            if (index === parseInt(i, 10)) {
+              if (!self[i].classList.contains('active')) {
+                self[i].classList.add('active');
+                tabContents[i].style.display = 'block';
+              }
+            } else {
+              self[i].classList.remove('active');
+              tabContents[i].style.display = 'none';
+            }
+          }
+        }
+      }) : null;
+    }) : null;
+    // =============================================================
+
+
+    // ========================== codetab ==========================
+    document.querySelectorAll('.codetab') ? 
+    document.querySelectorAll('.codetab').forEach(function(elem, idx) {
+      var containerId = elem.getAttribute('id');
+      var containerElem = elem;
+      var codetabLinks = elem.querySelectorAll('.codetab__link');
+      var codetabContents = elem.querySelectorAll('.codetab__content');
+      var ids = [];
+
+      codetabLinks && codetabLinks.length > 0 ?
+      codetabLinks.forEach(function(link, index, self) {
+        link.onclick = function(e) {
+          for (var i = 0; i < self.length; i++) {
+            if (index === parseInt(i, 10)) {
+              if (!self[i].classList.contains('active')) {
+                self[i].classList.add('active');
+                codetabContents[i].style.display = 'block';
+              }
+            } else {
+              self[i].classList.remove('active');
+              codetabContents[i].style.display = 'none';
+            }
+          }
+        }
+      }) : null;
+    }) : null;
+    // =============================================================
+
 
     
     // ======================= toggle theme =======================
@@ -456,8 +554,12 @@
 
 
   // ========================== search ==========================
-    {{ $searchURL:= ("/" | absLangURL) }}
-    var searchURL = JSON.parse({{ $searchURL | jsonify }});
+    {{ $baseurl := $.Site.BaseURL }}
+    var baseurl = JSON.parse({{ $baseurl | jsonify }});
+    {{ $permalink := .Permalink }}
+    var permalink = JSON.parse({{ $permalink | jsonify }});
+    {{ $langprefix := $.Site.LanguagePrefix }}
+    var langprefix = JSON.parse({{ $langprefix | jsonify }});
     var searchResults = null;
     var searchMenu = null;
     var searchText = null;
@@ -472,7 +574,7 @@
     if (enableSearch) {
       (function initFuse() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', searchURL + "index.json");
+        xhr.open('GET', baseurl + langprefix + "/index.json");
         xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         xhr.onload = function () {
           if (xhr.status === 200) {

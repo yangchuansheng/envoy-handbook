@@ -13,31 +13,35 @@ weight: 1
 
 `Envoy` 本身是很难编译的，需要使用到项目构建工具 [Bazel](https://docs.bazel.build/versions/master/install.html)，为了解决这个问题，`Tetrate` 的工程师（包括 Envoy 的核心贡献者和维护者）发起了 [GetEnvoy](https://www.getenvoy.io) 项目，目标是利用一套经过验证的构建工具来构建 Envoy，并通过常用的软件包管理器来分发，包括：`apt`、`yum` 和 `Homebrew`。安装方式如下：
 
-{{< expand "MacOS" >}}
-```bash
-$ brew tap tetratelabs/getenvoy
+{{< tabs MacOS CentOS Ubuntu >}}
+  {{< tab >}}
 
-$ brew install envoy
-==> Installing envoy from tetratelabs/getenvoy
-==> Downloading ...
-######################################################################## 100.0%
-🍺  /usr/local/Cellar/envoy/1.14.1: 3 files, 61.3MB, built in 47 seconds
-```
-{{< /expand >}}
+  ```bash
+  $ brew tap tetratelabs/getenvoy
 
-{{< expand "CentOS/RedHat" >}}
-```bash
+  $ brew install envoy
+  ==> Installing envoy from tetratelabs/getenvoy
+  ==> Downloading ...
+  ######################################################################## 100.0%
+  🍺  /usr/local/Cellar/envoy/1.14.1: 3 files, 61.3MB, built in 47 seconds
+  ```
+
+  {{< /tab >}}
+  {{< tab >}}
+
+  ```bash
 # 安装 yum-config-manager 
 $ yum install -y yum-utils
 # 添加 Envoy 仓库
 $ yum-config-manager --add-repo https://getenvoy.io/linux/centos/tetrate-getenvoy.repo
 # 安装 Envoy
 $ yum install -y getenvoy-envoy
-```
-{{< /expand >}}
+  ```
 
-{{< expand "Debian/Ubuntu" >}}
-```bash
+  {{< /tab >}}
+  {{< tab >}}
+
+  ```bash
 # 更新 apt 索引 
 $ apt update
 # 安装 HTTPS 依赖
@@ -62,8 +66,10 @@ $ add-apt-repository \
   stable"
 # 安装 Envoy
 $ apt-get update && apt-get install -y getenvoy-envoy
-```
-{{< /expand >}}
+  ```
+
+  {{< /tab >}}
+{{< /tabs >}}
 
 ## Docker
 

@@ -1,15 +1,15 @@
 {{ define "main" }}
+{{ $wideViewAsDefault := ($.Param "wideViewAsDefault") }}
 <div class="mid">
   <div class="divider">
     
-    <nav id="single-menu" class="l" data-dir="{{ $.Param "languagedir" | default "ltr" }}">
+    <nav id="single-menu" class="{{ if $wideViewAsDefault }}hide{{ else }}l{{ end }}" data-dir="{{ $.Param "languagedir" | default "ltr" }}">
     </nav>
 
-    <article id="list-main" class="m" data-dir="{{ $.Param "languagedir" | default "ltr" }}">
+    <article id="list-main" class="{{ if $wideViewAsDefault }}lm{{ else }}m{{ end }}" data-dir="{{ $.Param "languagedir" | default "ltr" }}">
       {{ if $.Param "enableBlogBreadcrumb" }}
         {{ partial "main/component/breadcrumb.html" . }}
       {{ end }}
-      {{ partial "main/component/toggle-sidebar.html" . }}
       {{ partial "main/sections/list-main.html" . }}
       {{ partial "main/component/pagination-single.html" . }}
     </article>
@@ -28,17 +28,30 @@
   var listSide = document.getElementById('list-side');
   var listMain = document.getElementById('list-main');
   var singleMenu = document.getElementById('single-menu');
+  var wideViewAsDefault = JSON.parse({{ $wideViewAsDefault | jsonify }});
 
   enquire.register("screen and (max-width:1280px)", {
     match: function () {
-      listSide.className = 'r';
-      listMain.className = 'm';
-      singleMenu.className = 'l';
+      if (wideViewAsDefault) {
+        singleMenu.className = 'hide';
+        listMain.className = 'lm';
+        listSide.className = 'r';
+      } else {
+        singleMenu.className = 'l';
+        listMain.className = 'm';
+        listSide.className = 'r';
+      }
     },
     unmatch: function () {
-      listSide.className = 'r';
-      listMain.className = 'm';
-      singleMenu.className = 'l';
+      if (wideViewAsDefault) {
+        singleMenu.className = 'hide';
+        listMain.className = 'lm';
+        listSide.className = 'r';
+      } else {
+        singleMenu.className = 'l';
+        listMain.className = 'm';
+        listSide.className = 'r';
+      }
     },
   }).register("screen and (max-width:960px)", {
     match: function () {
@@ -47,9 +60,15 @@
       singleMenu.className = 'hide';
     },
     unmatch: function () {
-      listSide.className = 'r';
-      listMain.className = 'm';
-      singleMenu.className = 'l';
+      if (wideViewAsDefault) {
+        singleMenu.className = 'hide';
+        listMain.className = 'lm';
+        listSide.className = 'r';
+      } else {
+        singleMenu.className = 'l';
+        listMain.className = 'm';
+        listSide.className = 'r';
+      }
     },
   }).register("screen and (max-width:600px)", {
     match: function () {
@@ -61,7 +80,6 @@
       listSide.className = 'r';
       listMain.className = 'lm';
       singleMenu.className = 'hide';
-      
     },
   });
 </script>

@@ -1,0 +1,18 @@
+{{ $totalTag := (len .Site.Taxonomies.tags) }}
+<h6 class="tag-cloud__label">
+  {{ .Title }}
+</h6>
+<div class="tag-cloud__tags">
+  {{ range $index, $element := .Site.Taxonomies.tags }}
+    {{ if $index }}
+      <a href="{{ $element.Page.RelPermalink }}" class="tag">
+        <span class="tag__text" style="font-size: {{ add 0.8 (div (len $element) (mul 1.0 $totalTag)) }}rem;">
+          {{ $element.Page.Title }}
+        </span>
+        <span class="tag__num" style="font-size: {{ add 0.8 (div (len $element) (mul 1.0 $totalTag)) }}rem;" dir="auto">
+          ({{ printf "%#v" (len $element) }})
+        </span>
+      </a>
+    {{ end }}
+  {{ end }}
+</div>

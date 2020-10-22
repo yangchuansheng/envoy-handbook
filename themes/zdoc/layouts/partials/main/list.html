@@ -8,7 +8,6 @@
     </nav>
 
     <article id="list-main" class="m" data-dir="{{ $.context.Param "languagedir" | default "ltr" }}">
-      {{ partial "main/component/toggle-sidebar.html" .context }}
       {{ partial "main/sections/list-main.html" .context }}
       {{ if .section_to_display }}
         {{ partial "main/sections/list-section.html" (dict "section_to_display" .section_to_display) }}
@@ -26,7 +25,8 @@
   var listSide = document.getElementById('list-side');
   var listMain = document.getElementById('list-main');
   var listMenu = document.getElementById('list-menu');
-  
+  var switchElem = document.querySelector('.switch');
+
   enquire.register("screen and (max-width:1280px)", {
     match: function () {
       listSide.className = 'r';
@@ -43,22 +43,26 @@
       listSide.className = 'hide';
       listMain.className = 'mr';
       listMenu.className = 'l';
+      switchElem.className = 'hide';
     },
     unmatch: function () {
       listSide.className = 'r';
       listMain.className = 'm';
       listMenu.className = 'l';
+      switchElem.className = 'switch';
     },
   }).register("screen and (max-width:600px)", {
     match: function () {
       listSide.className = 'hide';
       listMain.className = 'lmr';
       listMenu.className = 'hide';
+      switchElem.className = 'hide';
     },
     unmatch: function () {
       listSide.className = 'hide';
       listMain.className = 'mr';
       listMenu.className = 'l';
+      switchElem.className = 'hide';
     },
   });
 </script>

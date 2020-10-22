@@ -17,6 +17,9 @@
     outline: none;
     border: none;
     cursor: pointer;
+    @include themify($themes) {
+      color: themed('body-color');
+    }
     font-size: 13.8px;
     font-family: $title-font;
     text-transform: capitalize;

@@ -23,6 +23,7 @@ enableMenu = true
 enableNavbar = true
 enableFooter = true
 showPoweredBy = false 
+enableWideBlogSwitch = true
 
 tocLevels = ["h2", "h3", "h4"]
 paginateWindow = 1

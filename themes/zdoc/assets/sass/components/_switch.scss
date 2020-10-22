@@ -1,12 +1,41 @@
 /* The switch - the box around the slider */
 .switch {
-  position: absolute;
-  right: -2rem;
-  top: 1.75rem;
-  display: inline-block;
-  width: 30px;
-  height: 16px;
-  z-index: z('gtt');
+  cursor: pointer;
+
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+
+  &__rel {
+    position: relative;
+    height: auto;
+    padding: 0 6px;
+    
+    @include themify($themes) {
+      color: themed('landing-button-default');
+      @include on-event {
+        color: themed('body-color');
+        background-color: themed('dropdown-hover-background-color');
+      }
+    }
+  }
+
+  &__abs {
+    position: absolute;
+    left: -75px;
+    top: -16px;
+    z-index: z('menu');
+    width: 50px;
+    height: 50px;
+    margin: auto 0;
+
+    @include themify($themes) {
+      color: themed('landing-button-default');
+      @include on-event {
+        color: themed('body-color');
+      }
+    }
+  }
 }
 
 /* Hide default HTML checkbox */
@@ -18,43 +47,17 @@
 
 /* The slider */
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   background-color: transparent;
   -webkit-transition: .2s;
   transition: .2s;
 
-  &:before {
-    position: absolute;
-    content: "";
-    height: 12px;
-    width: 13px;
-    left: 2px;
-    bottom: 2px;
-    -webkit-transition: .2s;
-    transition: .2s;
-  }
-
   &__icon {
-    padding: 0.5rem;
+    svg {
+      @include flexbox();
+      @include align-items(center);
+    }
   }
 }
-
-// input:checked + .slider {
-//   @include themify($themes) {
-//     background-color: transparent;
-//   }
-// }
-
-// input:focus + .slider {
-//   @include themify($themes) {
-//     background-color: transparent;
-//   }
-// }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(13px);

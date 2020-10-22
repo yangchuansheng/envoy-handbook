@@ -34,13 +34,13 @@
 .divider {
     display: grid;
     height: 100%;
-    grid-template-columns: minmax(200px, 240px) minmax(350px, 769px) minmax(200px, 240px);
+    grid-template-columns: minmax(200px, 240px) minmax(350px, 989px) minmax(200px, 240px);
     grid-template-rows: auto;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 
     @include justify-content(center);
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 989px) {
         grid-template-columns: minmax(0, $grid-side-width) minmax(0, $grid-body-width) minmax(0, $grid-side-width);
     }
 }
@@ -56,20 +56,18 @@
 
 .sv { // single view
     display: grid;
+    grid-template-columns: minmax(630px, 1fr) minmax(125px, 325px);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 
-    &[data-view="full"] {
-        grid-template-columns: 769px;
-    }
-
-    &[data-view="mobile"] {
-        width: 100%;
-        grid-template-columns: 1fr;
+    @media only screen and (max-width: 769px) {
+        grid-template-columns: minmax(200px, 1fr);
     }
 }
 
-.blog {
-    grid-area: 1 / 1 / 2 / 2;
-}
+.blog-post { grid-area: 1 / 1 / 2 / 2; } // left
+
+.blog-tags { grid-area: 1 / 2 / 2 / 3; } // right
+
+.blog-total { grid-area: 1 / 1 / 2 / 3; } // left right

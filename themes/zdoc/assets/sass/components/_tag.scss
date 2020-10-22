@@ -1,6 +1,7 @@
 .tag {
   display: inline-block;
-  margin: 0.25rem 0.4rem;
+  padding: 0.2rem 0;
+  width: 100%;
   text-decoration: none !important;
 
   @include themify($themes) {
@@ -16,14 +17,37 @@
   }
 
   &__text {
-    font-size: 0.95rem;
-    font-weight: bold;
     color: inherit;
   }
 
   &__num {
-    font-size: 0.75rem;
-    font-weight: bold;
     color: inherit;
+  }
+
+  &-cloud {
+    position: relative;
+
+    &__label {
+      font-family: $title-font;
+      font-size: 1rem;
+      margin: 3.5rem 0 0 0;
+      margin-left: 1.25rem;
+      padding-left: 2.5rem;
+
+      @include themify($themes) {
+        color: themed('toc-label-color');
+      }
+    }
+
+    &__tags {
+      // position: -webkit-sticky;
+      // position: sticky;
+      top: $grid-nav-height;
+      padding: 1rem;
+      padding-left: 3rem;
+      height: calc(100vh - $grid-nav-height);
+      overflow-y: auto;
+      z-index: z('menu');
+    }
   }
 }

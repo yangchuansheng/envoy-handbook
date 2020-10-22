@@ -1,0 +1,47 @@
+{{ $id := substr (md5 .Inner) 0 16 }}
+<div id="{{ $id }}" class="codetab">
+  <div class="codetab__links">
+    {{ range .Params }}
+      <button class="codetab__link" aria-label="Tab link">{{ . }}</button>
+    {{ end }}
+  </div>
+  {{ .Inner }}
+</div>
+
+<script>
+  'use strict';
+
+  var containerId = JSON.parse({{ $id | jsonify }});
+  var containerElem = document.getElementById(containerId);
+  var codetabLinks = null;
+  var codetabContents = null;
+  var ids = [];
+
+  if (containerElem) {
+    codetabLinks = containerElem.querySelectorAll('.codetab__link');
+    codetabContents = containerElem.querySelectorAll('.codetab__content');
+  }
+
+  for (var i = 0; i < codetabContents.length; i++) {
+    ids = ids.concat(codetabContents[i].getAttribute('id'));
+    codetabContents[i].style.display = 'none';
+
+    if (0 === parseInt(i, 10) && !codetabContents[i].classList.contains('active')) {
+      codetabContents[i].classList.add('active');
+    }
+  }
+
+  for (var i = 0; i < codetabLinks.length; i++) {
+    codetabLinks[i].setAttribute('id', ids[i]);
+
+    if (0 === parseInt(i, 10) && !codetabLinks[i].classList.contains('active')) {
+      codetabLinks[i].classList.add('active');
+    } else {
+      codetabLinks[i].classList.remove('active');
+    }
+  }
+
+  if (codetabContents.length > 0) {
+    codetabContents[0].style.display = 'block';
+  }
+</script>
