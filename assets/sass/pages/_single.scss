@@ -583,6 +583,7 @@ pre:not(.chroma) {
   }
 
   .lntd {
+
     &:first-child {
       width: 10px;
       @include no-select;
