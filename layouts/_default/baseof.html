@@ -12,12 +12,20 @@
     {{ partial "head/services" . }}
 </head>
 
-<body id="root" class="theme__{{ index .Site.Params.themeOptions 0 }}">
+{{ $themeOptions := .Site.Params.themeOptions }}
+<body id="root" class="theme__{{ index $themeOptions 0 }}">
     <script>
+        var rootElem = document.getElementById('root');
+        var themeOptions = JSON.parse({{ $themeOptions | jsonify }});
         var localTheme = localStorage.getItem('theme');
+
         if (localTheme) {
-            document.getElementById('root').className = `theme__${localTheme}`;
-        }        
+            if (themeOptions && themeOptions.length > 0) {
+                themeOptions.includes(localTheme) ? 
+                rootElem.className = `theme__${localTheme}` :
+                rootElem.className = `theme__${themeOptions[0]}`;
+            }
+        }       
     </script>
     
     <div id="container">
