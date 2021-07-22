@@ -104,3 +104,7 @@ Envoy 官方还提供了 Windows 平台的 Docker 镜像，使用方式很简单
 $ docker pull envoyproxy/envoy-windows-dev:latest
 $ docker run --rm envoyproxy/envoy-windows-dev:latest --version
 ```
+
+## 参考资料
+
++ [Installing Envoy](https://www.envoyproxy.io/docs/envoy/v1.18.3/start/install)
