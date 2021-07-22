@@ -17,13 +17,17 @@ weight: 1
   {{< tab >}}
 
   ```bash
-  $ brew tap tetratelabs/getenvoy
+  $ brew update
 
   $ brew install envoy
-  ==> Installing envoy from tetratelabs/getenvoy
-  ==> Downloading ...
+  ==> Installing envoy
+
+  ==> Downloading https://ghcr.io/v2/homebrew/core/envoy/manifests/1.18.3-1
   ######################################################################## 100.0%
-  🍺  /usr/local/Cellar/envoy/1.14.1: 3 files, 61.3MB, built in 47 seconds
+  ==> Downloading https://ghcr.io/v2/homebrew/core/envoy/blobs/sha256:d03fb86b48336c8d3c0f3711cfc3df3557f9fb33c966ceb1caecae1653935e90
+  ######################################################################## 100.0%
+  ==> Pouring envoy--1.18.3.big_sur.bottle.1.tar.gz
+  🍺  /usr/local/Cellar/envoy/1.18.3: 300 files, 119.5MB
   ```
 
   {{< /tab >}}
@@ -45,7 +49,7 @@ $ yum install -y getenvoy-envoy
 # 更新 apt 索引 
 $ apt update
 # 安装 HTTPS 依赖
-$ apt-get install -y \
+$ apt install -y \
   apt-transport-https \
   ca-certificates \
   curl \
@@ -54,7 +58,7 @@ $ apt-get install -y \
 # 添加 Tetrate GPG 密钥
 $ curl -sL 'https://getenvoy.io/gpg' | sudo apt-key add -
 # 通过指纹验证密钥
-$ apt-key fingerprint 6FF974DB
+$ apt-key fingerprint 6FF974DB | grep "5270 CEAC"
 pub   4096R/6FF974DB 2019-03-01
   Key fingerprint = 5270 CEAC 57F6 3EBD 9EA9  005D 0253 D0B2 6FF9 74DB
 uid                  GetEnvoy <getenvoy@tetrate.io>
@@ -65,7 +69,7 @@ $ add-apt-repository \
   $(lsb_release -cs) \
   stable"
 # 安装 Envoy
-$ apt-get update && apt-get install -y getenvoy-envoy
+$ apt update && apt install -y getenvoy-envoy
   ```
 
   {{< /tab >}}
@@ -83,11 +87,20 @@ $ apt-get update && apt-get install -y getenvoy-envoy
 获取镜像：
 
 ```bash
-$ docker pull envoyproxy/envoy:v1.14.1
+$ docker pull envoyproxy/envoy:v1.18.3
 ```
 
 启动 Envoy 容器时，可以用本地的 `envoy.yaml` 覆盖镜像中的 `envoy.yaml`：
 
 ```bash
-🐳 → docker run -d --network=host -v `pwd`/envoy.yaml:/etc/envoy/envoy.yaml envoyproxy/envoy:v1.14.1
+🐳 → docker run -d --network=host -v `pwd`/envoy.yaml:/etc/envoy/envoy.yaml envoyproxy/envoy:v1.18.3
+```
+
+## Windows
+
+Envoy 官方还提供了 Windows 平台的 Docker 镜像，使用方式很简单：
+
+```bash
+$ docker pull envoyproxy/envoy-windows-dev:latest
+$ docker run --rm envoyproxy/envoy-windows-dev:latest --version
 ```
