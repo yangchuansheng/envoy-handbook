@@ -21,7 +21,11 @@ Envoy 使用 `YAMl` 配置来控制代理的行为，为了快速开始，我们
 $ wget https://getenvoy.io/samples/basic-front-proxy.yaml
 ```
 
-由于国内不可描述的网络原因，最好将示例中的 `google` 改成 `baidu`，改完后完整的配置文件如下：
+{{< notice note >}}
+Envoy 代理使用[开源 xDS API](https://www.envoyproxy.io/docs/envoy/latest/api/api) 来交换信息，目前 xDS v2 已被废弃，最新版本的 Envoy 不再支持 xDS v2，建议使用 xDS v3。
+{{< /notice >}}
+
+由于国内不可描述的网络原因，最好将示例中的 `google` 改成 `baidu`，**并将 xDS API 改为 v3**，改完后完整的配置文件如下：
 
 {{< expand "basic-front-proxy.yaml" >}}
 ```yaml
@@ -36,16 +40,16 @@ static_resources:
     # Any requests received on this address are sent through this chain of filters
     - filters:
       # If the request is HTTP it will pass through this HTTP filter
-      - name: envoy.http_connection_manager 
+      - name: envoy.filters.network.http_connection_manager 
         typed_config:
-          "@type": type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager
+          "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
           codec_type: auto
           stat_prefix: http
-          access_log:
-            name: envoy.file_access_log
-            typed_config:
-              "@type": type.googleapis.com/envoy.config.accesslog.v2.FileAccessLog
-              path: /dev/stdout
+        access_log:
+          name: envoy.access_loggers.file
+          typed_config:
+            "@type": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog
+            path: /dev/stdout
           route_config:
             name: search_route
             virtual_hosts:
@@ -62,7 +66,7 @@ static_resources:
                 route:
                   # Send request to an endpoint in the Google cluster
                   cluster: baidu
-                  host_rewrite: www.baidu.com
+                  host_rewrite_literal: www.baidu.com
               - match:
                   prefix: "/"
                   headers:
@@ -71,10 +75,9 @@ static_resources:
                 route:
                   # Send request to an endpoint in the Bing cluster
                   cluster: bing
-                  host_rewrite: cn.bing.com
+                  host_rewrite_literal: cn.bing.com
           http_filters:
-          - name: envoy.router
-            typed_config: {}
+          - name: envoy.filters.http.router
   clusters:
   - name: baidu
     connect_timeout: 1s
