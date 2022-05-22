@@ -14,7 +14,7 @@ weight: 3
 
 Envoy 的架构如图所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200504160047.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting/img/20200504160047.png)
 
 Envoy 接收到请求后，会先走 `FilterChain`，通过各种 L3/L4/L7 Filter 对请求进行微处理，然后再路由到指定的集群，并通过负载均衡获取一个目标地址，最后再转发出去。
 
@@ -78,5 +78,5 @@ Envoy 进程中运行着一系列 `Inbound/Outbound` 监听器（Listener），`
 
 根据上面的分类，Envoy 过滤器的架构如下图所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200504224710.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting/img/20200504224710.png)
 

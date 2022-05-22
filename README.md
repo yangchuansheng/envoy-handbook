@@ -22,7 +22,7 @@
 
 **加入组织: _[Telegram](https://t.me/gsealyun)_**
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200504160047.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting/img/20200504160047.png)
 
 ## 👋 为什么选择 Envoy
 
@@ -30,7 +30,7 @@
 
 Envoy 是一个独立进程，设计为伴随每个应用程序服务运行。所有的 Envoy 形成一个透明的通信网格，每个应用程序发送消息到本地主机或从本地主机接收消息，不需要知道网络拓扑，对服务的实现语言也完全无感知，这种模式也被称为 Sidecar。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200430142752.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting/img/20200430142752.png)
 
 ### L3/L4/L7 架构
 

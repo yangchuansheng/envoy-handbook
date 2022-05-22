@@ -15,7 +15,7 @@ weight: 1
 
 + **非侵入的架构** : `Envoy` 是一个独立进程，设计为伴随每个应用程序服务运行。所有的 `Envoy` 形成一个透明的通信网格，每个应用程序发送消息到本地主机或从本地主机接收消息，不需要知道网络拓扑，对服务的实现语言也完全无感知，这种模式也被称为 `Sidecar`。 
 
-  ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200430142752.png)
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting/img/20200430142752.png)
 
 + 由 `C++` 语言实现，拥有强大的定制化能力和优异的性能。
 

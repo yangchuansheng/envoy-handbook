@@ -17,7 +17,7 @@ weight: 3
 
 下图展示了服务治理功能与主应用程序的部署关系图。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200503104806.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting/img/20200503104806.png)
 
 该模式允许我们向应用无侵入添加多种功能，避免了为满足第三方组件需求而向应用添加额外的配置代码。
 
@@ -25,7 +25,7 @@ weight: 3
 
 在软件架构中，`Sidecar` 附加到主应用，或者叫父应用上，以扩展/增强功能特性，同时 `Sidecar` 与主应用是松耦合的。这就像是如下图所示的边三轮摩托车那样，将边车（Sidecar）安装在一辆摩托车上，就变成了边三轮摩托车。每辆边三轮摩托车都有自己的边车。类似同样的方式，`Sidecar` 服务共享其父应用程序的主机。对于应用程序的每个实例，边车的实例被部署并与其一起托管。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200430142946.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting/img/20200430142946.jpg)
 
 使用 `Sidecar` 模式的好处有很多：
 
@@ -39,7 +39,7 @@ weight: 3
 
 `Envoy` 是为云原生应用设计的代理，可以在服务旁运行，以平台无关的方式提供必要的特性，所有到服务的流量都通过 `Envoy` 代理，这里 `Envoy` 扮演的就是 `Sidecar` 的角色。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200503110532.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting/img/20200503110532.png)
 
 总的来说，在从一体化架构向微服务架构的转型让我们可以相对独立、大规模地部署应用，而在容器环境中，`Sidecar` 模式可以很好地兼容，帮助我们降低微服务架构复杂性，更好地实现服务发现、流量管理、负载均衡、路由。
 

@@ -129,7 +129,7 @@ admin:
 
 结合关键字段和上面的脑补流程，可以看出 Envoy 的大致处理流程如下：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/20210722124550.webp)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/20210722124550.webp)
 
 Envoy 内部对请求的处理流程其实跟我们上面脑补的流程大致相同，即对请求的处理流程基本是不变的，而对于变化的部分，即对请求数据的微处理，全部抽象为 `Filter`，例如对请求的读写是 `ReadFilter`、`WriteFilter`，对 `HTTP` 请求数据的编解码是 `StreamEncoderFilter`、`StreamDecoderFilter`，对 `TCP` 的处理是 `TcpProxyFilter`，其继承自 `ReadFilter`，对 `HTTP` 的处理是 `ConnectionManager`，其也是继承自 `ReadFilter` 等等，各个 Filter 最终会组织成一个 `FilterChain`，在收到请求后首先走 `FilterChain`，其次路由到指定集群并做负载均衡获取一个目标地址，然后转发出去。
 
